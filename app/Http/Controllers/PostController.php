@@ -15,13 +15,13 @@ class PostController extends Controller
         $posts = Post::latest()->paginate(5);
 
         //render view with posts
-        return view('posts.index', compact('title', 'posts'));
+        return view('backend.posts.index', compact('title', 'posts'));
     }
 
     public function create()
     {
         $title = 'Tambah Post | Jicode';
-        return view('posts.create', compact('title'));
+        return view('backend.posts.create', compact('title'));
     }
 
     public function store(Request $request)
@@ -35,7 +35,7 @@ class PostController extends Controller
 
         //upload image
         $image = $request->file('image');
-        $image->storeAs('public/posts', $image->hashName());
+        $image->storeAs('public/backend/storage/posts', $image->hashName());
 
         //create post
         Post::create([
@@ -55,13 +55,13 @@ class PostController extends Controller
         // get post by id
         $post = Post::find($id);
 
-        return view('posts.view', compact('title', 'post'));
+        return view('backend.posts.view', compact('title', 'post'));
     }
 
     public function edit(Post $post)
     {
         $title = 'Edit Post | Jicode';
-        return view('posts.edit', compact('title', 'post'));
+        return view('backend.posts.edit', compact('title', 'post'));
     }
     
     public function update(Request $request, Post $post)
@@ -78,10 +78,10 @@ class PostController extends Controller
 
             //upload new image
             $image = $request->file('image');
-            $image->storeAs('public/posts', $image->hashName());
+            $image->storeAs('public/backend/storage/posts', $image->hashName());
 
             //delete old image
-            Storage::delete('public/posts/'.$post->image);
+            Storage::delete('public/backend/storage/posts/'.$post->image);
 
             //update post with new image
             $post->update([
@@ -107,7 +107,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //delete image
-        Storage::delete('public/posts/'. $post->image);
+        Storage::delete('public/backend/storage/posts/'. $post->image);
 
         //delete post
         $post->delete();
