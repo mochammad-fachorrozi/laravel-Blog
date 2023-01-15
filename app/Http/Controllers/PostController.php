@@ -12,7 +12,7 @@ class PostController extends Controller
     {
         $title = 'Data Post | Jicode';
         //get posts
-        $posts = Post::latest()->paginate(5);
+        $posts = Post::latest()->paginate(10);
 
         //render view with posts
         return view('backend.posts.index', compact('title', 'posts'));
@@ -114,5 +114,14 @@ class PostController extends Controller
 
         //redirect to index
         return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+
+    public function trash()
+    {
+        $title = 'Trash | Jicode';
+        // $posts = Post::onlyTrashed()->paginate(10);
+        // dd($posts);
+
+        return view('backend.posts.trash', compact('title'));
     }
 }

@@ -66,7 +66,12 @@
                         <li><a href="index3.html">Dashboard3</a></li>
                       </ul>
                     </li>
-                    <li><a href="{{ route('posts.index') }}"><i class="fa fa-edit"></i> Post</a>
+                    <li><a><i class="fa fa-edit"></i><span class="fa fa-chevron-down"></span> Post</a>
+                      <ul class="nav child_menu">
+                        <li><a href="{{ route('posts.index') }}">Post</a></li>
+                        <li><a href="{{ url('/posts/trash') }}">Backup Post</a></li>
+                        <li><a href="{{ route('posts.index') }}">Category</a></li>
+                      </ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">

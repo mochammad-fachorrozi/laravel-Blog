@@ -22,5 +22,6 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', [DashboardController::class, 'index']);
 
-// route resource
+// route resource posts
 Route::resource('/posts', PostController::class);
+Route::get('/posts/trash', [PostController::class, 'trash']);
